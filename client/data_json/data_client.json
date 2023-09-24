@@ -1,0 +1,57 @@
+[
+  {
+    "model": "Client.client",
+    "pk": 1,
+    "fields": {
+      "client_name": "Иванов Иван",
+      "client_email": "ivan.ne@ya.ru",
+      "client_comments":  "Много курит",
+      }
+  },
+  {
+    "model": "Client.client",
+    "pk": 2,
+    "fields": {
+      "client_name": "Петров Петр",
+      "client_email": "Petr.ne@ya.ru",
+      "client_comments":  "Много денег",
+      }
+  },
+  {
+    "model": "Client.client",
+    "pk": 3,
+    "fields": {
+      "client_name": "Сидоров Сидр",
+      "client_email": "sidr.ne@ya.ru",
+      "client_comments":  "Много говорит",
+      }
+  },
+  {
+    "model": "Client.client",
+    "pk": 4,
+    "fields": {
+      "client_name": "Алексеев Алексей",
+      "client_email": "alexey.ne@ya.ru",
+      "client_comments":  "Много работает",
+      }
+  },
+  {
+    "model": "Client.client",
+    "pk": 5,
+    "fields": {
+      "client_name": "Николаев Николай",
+      "client_email": "kolya.ne@ya.ru",
+      "client_comments":  "Сидит дома, не гуляет",
+      }
+  },
+  {
+    "model": "Client.client",
+    "pk": 6,
+    "fields": {
+      "client_name": "Филлипов Филлип",
+      "client_email": "filipp.ne@ya.ru",
+      "client_comments":  "Влип",
+      }
+  }
+]
+

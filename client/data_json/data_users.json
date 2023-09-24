@@ -1,0 +1,59 @@
+[
+  {
+    "model": "users.users",
+    "pk": 1,
+    "fields": {
+      "category_name": "Телевизор",
+      "description": "хорошо показывает новости"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": {
+      "category_name": "Смартфон",
+      "description": "хорошо звонит"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 3,
+    "fields": {
+      "category_name": "Холодильник",
+      "description": "хорошо морозит"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 4,
+    "fields": {
+      "category_name": "Принтер",
+      "description": "хорошо печатает"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 5,
+    "fields": {
+      "category_name": "микроволновая печь",
+      "description": "хорошо греет"
+    }
+  },
+
+  {
+    "model": "catalog.category",
+    "pk": 6,
+    "fields": {
+      "category_name": "Ноутбук",
+      "description": "хорошо сосёт"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 7,
+    "fields": {
+      "category_name": "Пылесос",
+      "description": "хорошо сосёт"
+    }
+  }
+]
