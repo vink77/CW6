@@ -1,7 +1,7 @@
 from random import random
 
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, UpdateView
 
 from client.models import Mailing, Client
 
@@ -12,11 +12,14 @@ def home(request):
 
     return render(request, 'client/home.html')
 
-def base(request):
+def client_list(request):
     """Домашняя страница с выводом списка всех созданных, но не проведенных рассылок"""
 
-    return render(request, 'client/base.html')
+    return render(request, 'client/client_list.html')
 
-class ClientListView(ListView):
+#class ClientListView(ListView):
+#    model = Client
+ #   context_object_name = 'client'
+
+class ClientUpdateView(UpdateView):
     model = Client
-    context_object_name = 'client'
