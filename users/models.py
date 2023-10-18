@@ -1,16 +1,23 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 NULLABLE = {"null": True, "blank": True}
-
 # Create your models here.
-class Users(models.Model):
-    user_name = models.CharField(max_length=100, verbose_name='ФИО')
-    user_email = models.EmailField(verbose_name='почта', unique=True)
-    user_password = models.TextField(**NULLABLE)
-    #owner = models.ForeignKey(on_delete=models.SET_NULL, **NULLABLE)  # Владелец (ссылка)
+class User(AbstractUser):
+    username = None
 
+    email = models.EmailField(unique=True, verbose_name='почта')
+
+    phone = models.CharField(max_length=35, verbose_name='телефон', **NULLABLE)
+    avatar = models.ImageField(upload_to='users/', verbose_name='аватар', **NULLABLE)
+
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = []
     def __str__(self):
-        return f'{self.user_email} ({self.user_name})'
+        return f'{self.email} ({self.username})'
 
     class Meta:
         verbose_name = 'пользователь'
         verbose_name_plural = 'пользователи'
+
+
+
