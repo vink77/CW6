@@ -1,5 +1,7 @@
 from django.db import models
 
+from config import settings
+
 NULLABLE = {"null": True, "blank": True}
 
 # Create your models here.
@@ -7,10 +9,10 @@ class Client(models.Model):
     client_name = models.CharField(max_length=100, verbose_name='ФИО')
     client_email = models.EmailField(verbose_name='почта', unique=True)
     client_comments = models.TextField(**NULLABLE)
-    #owner = models.ForeignKey(on_delete=models.SET_NULL, **NULLABLE)  # Владелец (ссылка)
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, **NULLABLE)  # User (ссылка)
 
     def __str__(self):
-        return f'{self.client_email} ({self.name})'
+        return f'{self.client_email} ({self.client_name})'
 
     class Meta:
         verbose_name = 'клиент'

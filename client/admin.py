@@ -3,7 +3,7 @@ from django.contrib import admin
 # Register your models here.
 from django.contrib import admin
 from client.models import Client
-from users.models import Users
+from users.models import User
 # Register your models here.
 #admin.site.register(Category)
 
@@ -16,7 +16,7 @@ class ClientAdmin(admin.ModelAdmin):
     search_fields = ('client_name', 'pk',)
 
 
-@admin.register(Users)
+@admin.register(User)
 class UsersAdmin(admin.ModelAdmin):
     list_display = ('pk', 'user_name',)
     list_filter = ('user_name',)

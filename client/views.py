@@ -3,6 +3,7 @@ from random import random
 from django.shortcuts import render
 from django.views.generic import ListView, UpdateView
 
+import client
 from client.models import Mailing, Client
 
 
@@ -23,3 +24,17 @@ def client_list(request):
 
 class ClientUpdateView(UpdateView):
     model = Client
+
+class ClientListView(ListView):
+    model = client
+    template_name = 'catalog/product_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        products = client.objects.all()
+        categories = get_categories()
+        for product in products:
+            product.active_version = product.versions.filter(is_active=True).first()
+        context['products'] = products
+        context['categories'] = categories
+        return context
