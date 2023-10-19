@@ -3,57 +3,80 @@
     "model": "users.users",
     "pk": 1,
     "fields": {
-      "category_name": "Телевизор",
-      "description": "хорошо показывает новости"
+     "email": "test1@skypro.ru",
+      "phone": "956-659",
+      "avatar":  "users/1.jpg",
+
+
+      "is_staff": "True",
+      "is_superuser": "True"
     }
   },
   {
-    "model": "catalog.category",
+    "model": "users.user",
     "pk": 2,
     "fields": {
-      "category_name": "Смартфон",
-      "description": "хорошо звонит"
+     "email": "test2@skypro.ru",
+      "phone": "956-652",
+      "avatar":  "users/2.jpg",
+      "is_staff": "True",
+      "is_superuser": "False"
     }
   },
   {
-    "model": "catalog.category",
+    "model": "users.user",
     "pk": 3,
     "fields": {
-      "category_name": "Холодильник",
-      "description": "хорошо морозит"
-    }
+      "email": "test3@skypro.ru",
+      "phone": "956-653",
+      "avatar":  "users/3.jpg",
+      "is_staff": "True",
+      "is_superuser": "False"
+
+  }
   },
   {
-    "model": "catalog.category",
+    "model": "users.user",
     "pk": 4,
     "fields": {
-      "category_name": "Принтер",
-      "description": "хорошо печатает"
-    }
+      "email": "test4@skypro.ru",
+      "phone": "956-654",
+      "avatar":  "users/4.jpg",
+      "is_staff": "True",
+      "is_superuser": "False"
+  }
   },
   {
-    "model": "catalog.category",
+    "model": "users.user",
     "pk": 5,
     "fields": {
-      "category_name": "микроволновая печь",
-      "description": "хорошо греет"
+      "email": "test5@skypro.ru",
+      "phone": "956-655",
+      "avatar":  "users/5.jpg",
+      "is_staff": "True",
+      "is_superuser": "False"
     }
   },
-
   {
-    "model": "catalog.category",
+    "model": "users.user",
     "pk": 6,
     "fields": {
-      "category_name": "Ноутбук",
-      "description": "хорошо сосёт"
+      "email": "test6@skypro.ru",
+      "phone": "956-656",
+      "avatar":  "users/6.jpg",
+      "is_staff": "True",
+      "is_superuser": "False"
     }
   },
   {
-    "model": "catalog.category",
+    "model": "users.user",
     "pk": 7,
     "fields": {
-      "category_name": "Пылесос",
-      "description": "хорошо сосёт"
+     "email": "test7@skypro.ru",
+      "phone": "956-657",
+      "avatar":  "users/7.jpg",
+      "is_staff": "True",
+      "is_superuser": "False"
     }
   }
 ]

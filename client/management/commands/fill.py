@@ -1,6 +1,9 @@
+import os
+
 from django.core.management.base import BaseCommand
 import json
 from client.models import Client
+from config import settings
 from users.models import User
 class Command(BaseCommand):
 
@@ -13,41 +16,45 @@ class Command(BaseCommand):
         User.objects.all().delete()
 
 
-#        categories = [
-#            {'category_name': 'Пылесос', 'description': 'хорошо сосёт'},
-#            {'category_name': 'Телевизор', 'description': 'хорошо показывает новости'},
-#            {'category_name': 'Смартфон', 'description': 'хорошо звонят'},
-#            {'category_name': 'Холодильник', 'description': 'хорошо морозят'},
-#            {'category_name': 'Принтер', 'description': 'хорошо печатают'},
-#            {'category_name': 'микроволновая печь', 'description': 'хорошо сосут'},
+
 #
-#        ]
 
         with open('client/data_json/data_users.json', 'r', encoding='UTF-8') as us:
             users_to_fill = json.load(us)
             for item in users_to_fill:
                 User.objects.create(
                     pk=item['pk'],
-                    category_name=item['fields']['category_name'],
-                    description=item['fields']['description']
+                    email=item['fields']['email'],
+                    phone=item['fields']['phone'],
+                    avatar=item['fields']['avatar'],
+
+                is_staff=True,
+                    is_superuser=True,
                 )
+
+
         with open('client/data_json/data_client.json', 'r', encoding='UTF-8') as prod:
             client_to_fill = json.load(prod)
             for item in client_to_fill:
-                cat = Client.objects.get(pk=item['fields']['category'])
+                owner_user = User.objects.get(pk=item['fields']['owner'])
                 Client.objects.create(
                     pk=item['pk'],
-                    product_name=item['fields']['product_name'],
-                    product_description = item['fields']['product_description'],
-                    avatar=item['fields']['avatar'],
-                    category=cat,
-                    price=item['fields']['price'],
-                    quantity_product=item['fields']['quantity_product'],
-                    date_create = item['fields']['date_create'],
-                    date_last_change=item['fields']['date_last_change'],
+                    client_name=item['fields']['client_name'],
+                    client_email=item['fields']['client_email'],
+                    client_comments=item['fields']['client_comments'],
+                    owner=owner_user,
+
                 )
 
-
+        user = User.objects.create(
+            email=settings.EMAIL_HOST_USER,
+            first_name='Admin',
+            last_name='SkyPro',
+            is_staff=True,
+            is_superuser=True,
+)
+        user.set_password(os.getenv('DATABASE_PASSWORD'))
+        user.save()
 
 
 #        category_to_fill = []

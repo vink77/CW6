@@ -5,7 +5,7 @@
     "fields": {
       "client_name": "Иванов Иван",
       "client_email": "ivan.ne@ya.ru",
-      "client_comments":  "Много курит",
+      "client_comments":  "Много курит"
       }
   },
   {
@@ -15,7 +15,8 @@
       "client_name": "Петров Петр",
       "client_email": "Petr.ne@ya.ru",
       "client_comments":  "Много денег",
-      }
+      "owner": 1
+    }
   },
   {
     "model": "Client.client",
@@ -24,6 +25,7 @@
       "client_name": "Сидоров Сидр",
       "client_email": "sidr.ne@ya.ru",
       "client_comments":  "Много говорит",
+      "owner": 1
       }
   },
   {
@@ -33,7 +35,8 @@
       "client_name": "Алексеев Алексей",
       "client_email": "alexey.ne@ya.ru",
       "client_comments":  "Много работает",
-      }
+      "owner": 1
+    }
   },
   {
     "model": "Client.client",
@@ -42,6 +45,7 @@
       "client_name": "Николаев Николай",
       "client_email": "kolya.ne@ya.ru",
       "client_comments":  "Сидит дома, не гуляет",
+      "owner": 1
       }
   },
   {
@@ -51,7 +55,8 @@
       "client_name": "Филлипов Филлип",
       "client_email": "filipp.ne@ya.ru",
       "client_comments":  "Влип",
-      }
+      "owner": 1
+    }
   }
 ]
 
