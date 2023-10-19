@@ -1,6 +1,7 @@
 from django.core.management.base import BaseCommand
 import json
 from client.models import Client
+from users.models import User
 class Command(BaseCommand):
 
     def handle(self, *args, **options):
@@ -9,7 +10,7 @@ class Command(BaseCommand):
         #Очищаем БД
 
         Client.objects.all().delete()
-        users.objects.all().delete()
+        User.objects.all().delete()
 
 
 #        categories = [
@@ -25,7 +26,7 @@ class Command(BaseCommand):
         with open('client/data_json/data_users.json', 'r', encoding='UTF-8') as us:
             users_to_fill = json.load(us)
             for item in users_to_fill:
-                Users.objects.create(
+                User.objects.create(
                     pk=item['pk'],
                     category_name=item['fields']['category_name'],
                     description=item['fields']['description']

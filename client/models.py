@@ -1,5 +1,4 @@
 from django.db import models
-
 from config import settings
 
 NULLABLE = {"null": True, "blank": True}
@@ -7,8 +6,8 @@ NULLABLE = {"null": True, "blank": True}
 # Create your models here.
 class Client(models.Model):
     client_name = models.CharField(max_length=100, verbose_name='ФИО')
-    client_email = models.EmailField(verbose_name='почта', unique=True)
-    client_comments = models.TextField(**NULLABLE)
+    client_email = models.EmailField(unique=True, verbose_name='почта')
+    client_comments = models.TextField(**NULLABLE, verbose_name='комментарии')
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, **NULLABLE)  # User (ссылка)
 
     def __str__(self):
@@ -20,7 +19,7 @@ class Client(models.Model):
 
 
 
-class Mailing (models.Model):
+class Mailing(models.Model):
     mailing_time = models.DateTimeField()
     period = models.CharField(max_length=50)
     status = models.CharField(max_length=50)
