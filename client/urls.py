@@ -16,7 +16,7 @@ app_name = ClientConfig.name
 urlpatterns = [
     path('', ClientListView.as_view(), name='list'),  # Домашняя страница
     path('create/', ClientCreateView.as_view(), name='create'),  # Домашняя страница
-    path('view/<int:pk>/', ClientDetailView.as_view(), name='view'),  # Домашняя страница
+    path('view/<int:pk>/', ClientDetailView.as_view(), name='detail'),  # Домашняя страница
     path('edit/<int:pk>/', ClientUpdateView.as_view(), name='edit'),  # Домашняя страница
 
 ]

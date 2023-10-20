@@ -44,3 +44,6 @@ class ClientCreateView(CreateView):
 
 class ClientDetailView(DetailView):
     model = Client
+    template_name = 'client/client_detail.html'
+    context_object_name = 'client'
+

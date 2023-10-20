@@ -12,7 +12,7 @@
                 <p class="card-text">комментарии: {{ object.client_comments }}</p>
                 <p class="card-text">Владелец: {{ object.client_owner }}</p>
                 <div class="d-flex justify-content-between align-items-center">
-                    <a class="btn btn-sm btn-outline-secondary">Подробнее</a>
+                    <a class="btn btn-sm btn-outline-secondary" href="{%  url 'client:detail' object.pk  %}" >Подробнее</a>
                     <small class="text-muted">{{ object.comment }}</small>
                 </div>
             </div>

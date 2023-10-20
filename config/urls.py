@@ -25,5 +25,5 @@ app_name = ClientConfig.name
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('client.urls',namespace='client')),
+    path('', include('users.urls',namespace='users')),
 ]

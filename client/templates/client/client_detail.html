@@ -1,10 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'client/base.html' %}
+{% block content %}
 
-</body>
-</html>
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+
+                  <img src="/media/{{user.avatar}}" alt="нет изображения"  style="max-width: 50%;">
+
+                <div class="card-body">
+                    <h5 class="card-title">{{object.category|title}} {{object.product_name|title}}</h5>
+                    <h1 class="card-title pricing-card-title">{{object.price|floatformat:2}} руб.</h1>
+                  <p class="card-text">{{object.product_description|truncatechars:100}}</p>
+                    <a class="pb-1  mb-4 btn btn-outline-primary form-control" href="{% url 'catalog:info1' %}">Купить</a>
+
+                  <div class="d-flex justify-content-between align-items-center">
+
+                    <div class="btn-group ">
+                      <a href="{% url 'catalog:list' %}"  class="btn btn-sm btn-outline-secondary"  >Назад</a>
+
+
+                    </div>
+                    <small class="text-muted">Просмотров - {{ object.views_count }}</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+{% endblock %}
