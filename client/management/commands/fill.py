@@ -27,34 +27,35 @@ class Command(BaseCommand):
                     email=item['fields']['email'],
                     phone=item['fields']['phone'],
                     avatar=item['fields']['avatar'],
-
-                is_staff=True,
+                    is_staff=True,
                     is_superuser=True,
                 )
 
 
-        with open('client/data_json/data_client.json', 'r', encoding='UTF-8') as prod:
-            client_to_fill = json.load(prod)
+        with open('client/data_json/data_client.json', 'r', encoding='UTF-8') as cl:
+            client_to_fill = json.load(cl)
             for item in client_to_fill:
+                print(item)
+                print(item['fields']['client_name'])
                 owner_user = User.objects.get(pk=item['fields']['owner'])
                 Client.objects.create(
                     pk=item['pk'],
                     client_name=item['fields']['client_name'],
                     client_email=item['fields']['client_email'],
                     client_comments=item['fields']['client_comments'],
-                    owner=owner_user,
+                    client_owner=owner_user,
 
                 )
 
-        user = User.objects.create(
-            email=settings.EMAIL_HOST_USER,
-            first_name='Admin',
-            last_name='SkyPro',
-            is_staff=True,
-            is_superuser=True,
-)
-        user.set_password(os.getenv('DATABASE_PASSWORD'))
-        user.save()
+#        user = User.objects.create(
+#            email=settings.EMAIL_HOST_USER,
+#            first_name='Admin',
+#            last_name='SkyPro',
+#            is_staff=True,
+#            is_superuser=True,
+#        )
+#        user.set_password(os.getenv('DATABASE_PASSWORD'))
+#        user.save()
 
 
 #        category_to_fill = []
