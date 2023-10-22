@@ -1,5 +1,6 @@
 from django.db import models
 from config import settings
+from users.models import User
 
 NULLABLE = {"null": True, "blank": True}
 
@@ -8,7 +9,7 @@ class Client(models.Model):
     client_name = models.CharField(max_length=100, verbose_name='ФИО')
     client_email = models.EmailField(unique=True, verbose_name='почта')
     client_comments = models.TextField(**NULLABLE, verbose_name='комментарии')
-    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, **NULLABLE)  # User (ссылка)
+    client_owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, verbose_name='владелец',**NULLABLE)
 
     def __str__(self):
         return f'{self.client_email} ({self.client_name})'
@@ -44,7 +45,7 @@ class Mailing(models.Model):
     status = models.CharField(max_length=20, choices=STATUSES, default=STATUS_CREATED, verbose_name='Статус')
 
     message = models.ForeignKey('Message', on_delete=models.CASCADE, verbose_name='Сообщение', **NULLABLE)
-
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, **NULLABLE)
     def __str__(self):
         return f'{self.time} / {self.period}'
 
@@ -89,7 +90,7 @@ class Logs(models.Model):
     last_try = models.DateTimeField(auto_now_add=True, verbose_name='Дата последней попытки')
 
 
-class Meta:
+    class Meta:
         verbose_name = 'Лог'
         verbose_name_plural = 'Логи'
 

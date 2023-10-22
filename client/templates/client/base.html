@@ -28,14 +28,18 @@
           <div class="row">
             <div class="col-sm-8 col-md-7 py-4">
               <h4 class="text-white">About</h4>
-              <p class="text-muted">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
+              <p class="text-muted">     </p>
             </div>
             <div class="col-sm-4 offset-md-1 py-4">
               <h4 class="text-white">Contact</h4>
               <ul class="list-unstyled">
-                <li><a href="/blog/" class="text-white">Блог магазина </a></li>
-                <li><a href="#" class="text-white">Like on Facebook</a></li>
-                <li><a href="#" class="text-white">Email me</a></li>
+                <li><a href="/blog/" class="text-white">Блог сервиса </a></li>
+                <li><a href="/contacts" class="text-white">Контакты</a></li>
+                {% if user.is_authenticated %}
+                <li class="last"><a href="{% url 'users:profile' %}" class="text-white">Профиль  {{user.email}}   | </a>><a href="{% url 'users:logout' %}" class="text-white">Выйти</a></li>
+                  {% else %}
+                <li class="last"><a href="{% url 'users:register' %}" class="text-white">Регистрация  |</a> <a href="{% url 'users:login' %}" class="text-white">Войти</a></li>
+                  {% endif %}
               </ul>
             </div>
           </div>
@@ -58,14 +62,16 @@
 
       <section class="jumbotron text-center">
         <div class="container">
-          <h1 class="jumbotron-heading">Магазин электроники ElektroStore</h1>
-          <p class="lead text-muted">Магазин электроники ElektroStore - это отличный вариант вложения ваших денежных средств</p>
+          <h1 class="jumbotron-heading">Клиентский сервис</h1>
+          {% if user.is_authenticated %}
           <p>
-            <a  class="btn btn-primary my-2" href="/" >Каталог</a>
-            <a  class="btn btn-secondary my-2" href="/contacts" >Контакты</a>
-            <a  class="btn btn-secondary my-2" href="/create" >Добавить товар</a>
+            <a  class="btn btn-danger my-4" href="{% url 'client:client_list' %}" >Список клиентов</a>
+            <a  class="btn btn-warning my-2" href="{% url 'client:messages_menu' %}" >Рассылки</a>
+            <a  class="btn btn-success my-2" href="client/create" >Добавить клиента</a>
 
           </p>
+          {% endif %}
+
         </div>
 
 </section>

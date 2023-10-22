@@ -7,16 +7,12 @@ from users.models import User
 # Register your models here.
 #admin.site.register(Category)
 
-#admin.site.register(Product)
+#admin.site.register(User)
 
 @admin.register(Client)
 class ClientAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'client_name', 'client_comments',)
+    list_display = ('client_name','client_email','client_owner', 'client_comments',)
     list_filter = ('client_name',)
-    search_fields = ('client_name', 'pk',)
+    search_fields = ('client_name', 'pk','client_owner',)
 
 
-@admin.register(User)
-class UsersAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'user_name',)
-    list_filter = ('user_name',)

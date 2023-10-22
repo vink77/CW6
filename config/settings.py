@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'client',
     'users',
+    'blog',
 ]
 
 MIDDLEWARE = [
@@ -142,7 +143,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 AUTH_USER_MODEL = 'users.User'
 
-LOGIN_REDIRECT_URL = 'client/list'
+LOGIN_REDIRECT_URL = 'client/client_list'
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_URL = '/users/'
 

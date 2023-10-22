@@ -41,7 +41,7 @@ class RegisterUser(CreateView):
 
         user = form.save()
         login(self.request,user)
-        return redirect('catalog:list')
+        return redirect('client:client_list')
 
 class ProfileView(LoginRequiredMixin, UpdateView):
     """
@@ -59,7 +59,7 @@ class ProfileView(LoginRequiredMixin, UpdateView):
 
 class LoginUser(LoginView):
     form_class = AuthenticationForm
-    template_name = 'catalog/product_list.html'
+    template_name = 'client/client_list.html'
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -67,11 +67,11 @@ class LoginUser(LoginView):
         return dict(list(context.items()) + list(c_def.items()))
 
     def get_success_url(self):
-        return reverse_lazy('catalog:list')
+        return reverse_lazy('client:list')
 
     def logout_user(self):
         logout(self)
-        return redirect('catalog:list')
+        return redirect('client:list')
 
 class PasswordRecoveryView(FormView):
     template_name = 'users/password_recovery.html'

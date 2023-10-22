@@ -3,11 +3,9 @@
     "model": "users.users",
     "pk": 1,
     "fields": {
-     "email": "test1@skypro.ru",
+      "email": "test1@skypro.ru",
       "phone": "956-659",
       "avatar":  "users/1.jpg",
-
-
       "is_staff": "True",
       "is_superuser": "True"
     }
@@ -16,7 +14,7 @@
     "model": "users.user",
     "pk": 2,
     "fields": {
-     "email": "test2@skypro.ru",
+      "email": "test2@skypro.ru",
       "phone": "956-652",
       "avatar":  "users/2.jpg",
       "is_staff": "True",
@@ -72,7 +70,7 @@
     "model": "users.user",
     "pk": 7,
     "fields": {
-     "email": "test7@skypro.ru",
+      "email": "test7@skypro.ru",
       "phone": "956-657",
       "avatar":  "users/7.jpg",
       "is_staff": "True",

@@ -1,0 +1,25 @@
+{% extends 'client/base.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="row justify-content-center mb-5">
+        <div class="col-md-2">
+            <a class="btn btn-primary btn-block" href="{% url 'blog:create' %}">Добавить запись</a>
+        </div>
+    </div>
+    <h1>Список записей</h1>
+
+    <ul>
+        {% for object in object_list %}
+        <li>
+            <h2><a href="{% url 'blog:detail' object.pk %}">{{ object.title }}</a></h2>
+            <p>{{ object.context }}</p>
+            <p>Просмотры: {{ object.view_count }}</p>
+            <a href="{% url 'blog:detail' object.pk %}" class="btn btn-secondary">View</a>
+            <a href="{% url 'blog:edit' object.pk %}" class="btn btn-secondary">Edit</a>
+            <a href="{% url 'blog:delete' object.pk %}" class="btn btn-secondary">Delete</a>
+        </li>
+        {% endfor %}
+    </ul>`
+</div>
+{% endblock %}

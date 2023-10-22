@@ -5,7 +5,9 @@
     "fields": {
       "client_name": "Иванов Иван",
       "client_email": "ivan.ne@ya.ru",
-      "client_comments":  "Много курит"
+      "client_comments":  "Много курит",
+      "owner": 1
+
       }
   },
   {
@@ -45,7 +47,7 @@
       "client_name": "Николаев Николай",
       "client_email": "kolya.ne@ya.ru",
       "client_comments":  "Сидит дома, не гуляет",
-      "owner": 1
+      "owner": 2
       }
   },
   {
@@ -55,7 +57,7 @@
       "client_name": "Филлипов Филлип",
       "client_email": "filipp.ne@ya.ru",
       "client_comments":  "Влип",
-      "owner": 1
+      "owner": "3"
     }
   }
 ]

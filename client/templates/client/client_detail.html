@@ -1,10 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'client/base.html' %}
+{% block content %}
+{% load static %}
 
-</body>
-</html>
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+
+                  <img src="/media/{{user.avatar}}" alt="нет изображения"  style="max-width: 50%;">
+
+                <div class="card-body">
+                    <h5 class="card-title">Клиент: {{object.client_name|title}}</h5>
+                    <h5 class="card-title pricing-card-title">email: {{ object.client_email }}</h5>
+                    <p class="card-text">{{object.client_comments|truncatechars:100}}</p>
+                    <h5 class="card-title pricing-card-title">Владелец: {{ object.client_owner }}</h5>
+
+                    <div class="btn-group">
+                      <a href="{% url 'client:detail' client.pk %}"  class="btn btn-sm btn-outline-primary">View</a>
+                      <a href="{% url 'client:update' client.pk %}"  class="btn btn-sm btn-outline-primary">Edit</a>
+                      <a href="{% url 'client:delete' client.pk %}"  class="btn btn-sm btn-outline-primary">Delete</a>
+                    </div>
+                  <div class="d-flex justify-content-between align-items-center">
+
+                    <div class="btn-group ">
+                      <a href="{% url 'client:client_list' %}"  class="btn btn-sm btn-outline-secondary"  >Назад</a>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+{% endblock %}
