@@ -1,5 +1,4 @@
 from django import forms
-from django.http import request
 
 from client.models import Client, Message, Logs
 from users.models import User
@@ -23,10 +22,8 @@ class ClientForm(FormStyleMixin, forms.ModelForm):
 
     class Meta:
         model = Client
-        print(User.objects.is_superuser)
         #if request.user.is_superuser:
-        #    exclude = ['client_owner',]
-        if User.get("is_superuser") is not True:
+        exclude = ['client_owner',]
 
 
 
