@@ -7,7 +7,7 @@ from django.views import generic
 from django.views.generic import ListView, UpdateView, DetailView, CreateView, DeleteView
 
 import client
-from client.forms import MessageForm
+from client.forms import MessageForm, ClientForm
 from client.models import Mailing, Client, Message
 
 
@@ -28,7 +28,8 @@ def home(request):
 
 class ClientUpdateView(UpdateView):
     model = Client
-    success_url = reverse_lazy('client:list')
+    form_class = ClientForm
+    success_url = reverse_lazy('client:client_list')
 
 class ClientListView(ListView):
     model = Client
@@ -46,7 +47,10 @@ class ClientListView(ListView):
 
 
 class ClientCreateView(CreateView):
-    pass
+    model = Client
+    # fields = ('product_name', 'product_description')
+    form_class = ClientForm
+    success_url = reverse_lazy('client:client_list')
 
 class ClientDetailView(DetailView):
     model = Client
@@ -94,12 +98,13 @@ class MessageCreateView(LoginRequiredMixin, generic.CreateView):
     """Контроллер создания рассылки"""
     model = Message
     form_class = MessageForm
-    success_url = reverse_lazy('mailing:message_list')
+    success_url = reverse_lazy('client:message_list')
 
     def form_valid(self, form):
         """Привязка создаваемого рассылки к авторизованному пользователю"""
         form.instance.User = self.request.user
         return super(MessageCreateView, self).form_valid(form)
+
 
 
 class MessageUpdateView(LoginRequiredMixin, generic.UpdateView):

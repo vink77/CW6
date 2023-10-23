@@ -20,7 +20,7 @@ urlpatterns = [
     path('client_list/', ClientListView.as_view(), name='client_list'),  # Домашняя страница
     path('create/', ClientCreateView.as_view(), name='create'),  # Домашняя страница
     path('detail/<int:pk>/', ClientDetailView.as_view(), name='detail'),  # Домашняя страница
-    path('update/<int:pk>/', ClientUpdateView.as_view(), name='update'),
+    path('update/<int:pk>/', ClientUpdateView.as_view(), name='view'),
     path('delete/<int:pk>/', ClientDeleteView.as_view(), name='delete'),
 
 

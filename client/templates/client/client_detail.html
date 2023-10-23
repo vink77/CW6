@@ -1,11 +1,11 @@
 {% extends 'client/base.html' %}
 {% block content %}
 {% load static %}
-
             <div class="col-md-4">
               <div class="card mb-4 box-shadow">
 
                   <img src="/media/{{user.avatar}}" alt="нет изображения"  style="max-width: 50%;">
+                    <p class="card-text">{{user.avatar}}</p>
 
                 <div class="card-body">
                     <h5 class="card-title">Клиент: {{object.client_name|title}}</h5>
@@ -14,9 +14,7 @@
                     <h5 class="card-title pricing-card-title">Владелец: {{ object.client_owner }}</h5>
 
                     <div class="btn-group">
-                      <a href="{% url 'client:detail' client.pk %}"  class="btn btn-sm btn-outline-primary">View</a>
-                      <a href="{% url 'client:update' client.pk %}"  class="btn btn-sm btn-outline-primary">Edit</a>
-                      <a href="{% url 'client:delete' client.pk %}"  class="btn btn-sm btn-outline-primary">Delete</a>
+
                     </div>
                   <div class="d-flex justify-content-between align-items-center">
 
