@@ -27,8 +27,8 @@ urlpatterns = [
     path('messages_menu', get_messages, name='messages_menu'),
     path('messages', MessageListView.as_view(), name='message_list'),
     path('message/<int:pk>/', MessageDetailView.as_view(), name='message_item'),
-    path('messages/create/', MessageCreateView.as_view(), name='message_create'),
-    path('messages/update/<int:pk>/', MessageUpdateView.as_view(), name='message_update'),
-    path('messages/delete/<int:pk>/', MessageDeleteView.as_view(), name='message_delete'),
+    path('message/create', MessageCreateView.as_view(), name='message_create'),
+    path('message/update/<int:pk>/', MessageUpdateView.as_view(), name='message_update'),
+    path('message/delete/<int:pk>/', MessageDeleteView.as_view(), name='message_delete'),
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

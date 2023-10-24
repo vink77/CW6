@@ -1,5 +1,4 @@
 {% extends 'client/base.html' %}
-{% load crispy_forms_tags %}
 
 {% block content %}
     <div class="col">
@@ -7,12 +6,12 @@
             <div class="card-body">
                 <form method="post">
                     {% csrf_token %}
-                    {{ form | crispy }}
+
                     <input type="submit" class="btn btn-success" value="{% if message %}Сохранить{% else %}Создать{% endif %}">
                 </form>
             </div>
             <div class="card-footer">
-                <a href="{% url 'client:message_list' %}" class="btn btn-primary"> Назад</a>
+                <a href="{% url 'client:message_menu' %}" class="btn btn-primary"> Назад</a>
             </div>
         </div>
     </div>

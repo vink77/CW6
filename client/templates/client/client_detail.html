@@ -3,13 +3,12 @@
 {% load static %}
             <div class="col-md-4">
               <div class="card mb-4 box-shadow">
-                  <img src="/media{{user.avatar}}" alt="нет изображения"  style="max-width: 50%;">
-                    <p class="card-text">{{user.avatar}}</p>
+                  <img src="/media/users/{{user.pk}}" alt="нет изображения"  style="max-width: 50%;">
+                    <p class="card-text">{{<.avatar}}</p>
 
                 <div class="card-body">
                     <h5 class="card-title">Клиент: {{object.client_name|title}}</h5>
                     <h5 class="card-title pricing-card-title">email: {{ object.client_email }}</h5>
-                    <p class="card-text">avatar {{user.avatar}}</p>
 
                     <p class="card-text">{{object.client_comments|truncatechars:100}}</p>
                     <h5 class="card-title pricing-card-title">Владелец: {{ object.client_owner }}</h5>

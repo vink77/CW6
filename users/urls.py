@@ -1,7 +1,9 @@
+from django.conf.urls.static import static
 from django.urls import path
 
 from django.contrib.auth.views import LoginView, LogoutView
 
+from config import settings
 from users.views import ProfileView, RegisterUser, PasswordRecoveryView
 from users.apps import UsersConfig
 
@@ -17,4 +19,4 @@ urlpatterns = [
     #path('login/', LoginView.as_view(), name='login'),
     path('password_recovery/', PasswordRecoveryView.as_view(), name='password_recovery'),
 
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

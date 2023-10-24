@@ -9,7 +9,7 @@ from users.models import User
 
 @admin.register(User)
 class UsersAdmin(admin.ModelAdmin):
-    list_display = ('email','phone','password',)
+    list_display = ('email','phone','password', 'avatar',)
     list_filter = ('email',)
 
 
