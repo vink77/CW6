@@ -72,7 +72,7 @@ class ClientDeleteView(DeleteView):
 
 
 
-class MessageListView(LoginRequiredMixin, generic.ListView):
+class MessageListView(LoginRequiredMixin, ListView):
     """Контроллер страницы рассылок"""
     model = Message
     extra_context = {
@@ -102,7 +102,7 @@ class MessageDetailView(DetailView):
         return context_data
 
 
-class MessageCreateView(LoginRequiredMixin, generic.CreateView):
+class MessageCreateView(LoginRequiredMixin, CreateView):
     """Контроллер создания рассылки"""
     model = Message
     form_class = MessageForm
