@@ -22,8 +22,8 @@ class ClientForm(FormStyleMixin, forms.ModelForm):
 
     class Meta:
         model = Client
-        #if request.user.is_superuser:
-        exclude = ['client_owner',]
+        #exclude = ['client_owner',]
+        fields = '__all__'
 
 
 

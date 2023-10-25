@@ -1,14 +1,14 @@
 from random import random
 
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
-from django.urls import reverse_lazy
+from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse_lazy, reverse
 from django.views import generic
 from django.views.generic import ListView, UpdateView, DetailView, CreateView, DeleteView
 
 import client
 from client.forms import MessageForm, ClientForm
-from client.models import Mailing, Client, Message
+from client.models import Client, Message, Logs
 
 
 # Create your views here.
@@ -52,6 +52,14 @@ class ClientCreateView(CreateView):
     form_class = ClientForm
     success_url = reverse_lazy('client:client_list')
 
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.client_owner = self.request.user
+        self.object.save()
+        return redirect(self.get_success_url())
+
+
+
 class ClientDetailView(DetailView):
     model = Client
     template_name = 'client/client_detail.html'
@@ -59,7 +67,7 @@ class ClientDetailView(DetailView):
 
 class ClientDeleteView(DeleteView):
     model = Client
-    success_url = reverse_lazy('client:list')
+    success_url = reverse_lazy('client:client_list')
 
 
 
@@ -81,7 +89,7 @@ class MessageListView(LoginRequiredMixin, generic.ListView):
         else:
             queryset = Message.objects.filter(client_owner=user)
 
-        queryset = queryset.filter(is_publication=True)
+        #queryset = queryset.filter(is_publication=True)
         return queryset
 
 class MessageDetailView(DetailView):
@@ -122,6 +130,9 @@ class MessageUpdateView(LoginRequiredMixin, generic.UpdateView):
             formset.save()
         return super().form_valid(form)
 
+    def get_success_url(self):
+        return reverse('client:message_detail', args=[self.object.pk])
+
 
 class MessageDeleteView(LoginRequiredMixin, generic.DeleteView):
     """Контроллер удаления рассылки"""
@@ -134,3 +145,17 @@ def get_messages(request):
         'title': 'Меню рассылки'
     }
     return render(request, 'client/messages_menu.html', context)
+
+def messages_logs(request, mailing_id):
+    mailing = get_object_or_404(Message, pk=mailing_id)
+    logs = Logs.objects.filter(log_mailing=mailing).order_by('-created_time')
+
+    if (mailing.owner == request.user or request.user.is_superuser
+            or request.user.groups.filter(name='manager').exists()):
+        context = {
+            'mailing': mailing,
+            'logs': logs,
+        }
+        return render(request, 'client/messages_logs.html', context)
+    else:
+        return redirect("client:message_list")

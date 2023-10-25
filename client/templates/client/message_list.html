@@ -1,20 +1,22 @@
 {% extends 'client/base.html' %}
 
 {% block content %}
-    <h2>Mailing List</h2>
+    <h4>Список рассылок</h4>
+    <p
+        ></p>
     <ul>
         {% if user.is_authenticated %}
             <div class="col-12 mb-5">
-                <a class="btn btn-outline-primary" href="{% url 'news:create_mailing' %}">Добавить запись</a>
+                <a class="btn btn-warning" href="{% url 'client:message_create' %}">Добавить рассылку</a>
             </div>
         {% endif %}
         {% for mailing in mailings %}
 
-            <li><a href="{% url 'news:mailing_detail' mailing.pk %}">{{ mailing.start_time }}
+            <li><a href="{% url 'client:message_detail' message.pk %}">{{ mailing.start_time }}
                 - {{ mailing.end_time }}  </a>
                 {% if mailing.owner.email == user.email or 'Managers' in user_group_names %}
-                    <a class="btn btn-outline-primary" href="{% url 'client:delete_mailing' mailing.pk %}">Удалить</a>
-                    <a class="btn btn-outline-primary" href="{% url 'client:update_mailing' mailing.pk %}">Редактировать</a>
+                    <a class="btn btn-outline-primary" href="{% url 'client:message_confirm_delete' message.pk %}">Удалить</a>
+                    <a class="btn btn-outline-primary" href="{% url 'client:message_update' message.pk %}">Редактировать</a>
                 {% endif %}
             </li>
         {% endfor %}

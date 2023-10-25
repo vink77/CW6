@@ -35,8 +35,6 @@ class Command(BaseCommand):
         with open('client/data_json/data_client.json', 'r', encoding='UTF-8') as cl:
             client_to_fill = json.load(cl)
             for item in client_to_fill:
-                print(item)
-                print(item['fields']['client_name'])
                 owner_user = User.objects.get(pk=item['fields']['owner'])
                 Client.objects.create(
                     #pk=item['pk'],
@@ -44,7 +42,23 @@ class Command(BaseCommand):
                     client_email=item['fields']['client_email'],
                     client_comments=item['fields']['client_comments'],
                     client_owner=owner_user,
+                )
 
+        with open('client/data_json/data_messages.json', 'r', encoding='UTF-8') as cl:
+            client_to_fill = json.load(cl)
+            for item in client_to_fill:
+
+                owner_message = User.objects.get(pk=item['fields']['owner'])
+                client_message = User.objects.get(pk=item['fields']['client'])
+                Client.objects.create(
+                    #pk=item['pk'],
+                    theme=item['fields']['theme'],
+                    message_body=item['fields']['message_body'],
+                    client=client_message,
+                    time=item['fields']['time'],
+                    period=item['fields']['period'],
+                    status=item['fields']['status'],
+                    owner=owner_message,
                 )
 
 #        user = User.objects.create(

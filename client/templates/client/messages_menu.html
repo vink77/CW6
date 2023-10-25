@@ -10,9 +10,7 @@
             <th scope="col">№</th>
             <th scope="col">Тема</th>
             <th scope="col">Содержание</th>
-            <th scope="col">Детали</th>
-            <th scope="col">Редактирование</th>
-            <th scope="col">Удаление</th>
+
         </tr>
         </thead>
         <tbody>
@@ -25,6 +23,6 @@
         </tbody>
     </table>
     <div class="col-12">
-        <a href="{% url 'client:messages_menu' %}" class="btn btn-primary"> Назад</a>
+        <a href="{% url 'client:client_list' %}" class="btn btn-primary"> Назад</a>
     </div>
 {% endblock %}

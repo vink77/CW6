@@ -1,0 +1,94 @@
+[
+  {
+    "model": "Client.message",
+    "pk": 1,
+    "fields": {
+      "theme": "1test1@skypro.ru",
+      "message_body": "956-659",
+      "client":  "1",
+      "time": "2023",
+      "period": "weekly",
+      "status": "created",
+      "owner": "2"
+    }
+  },
+  {
+    "model": "Client.message",
+    "pk": 2,
+    "fields": {
+      "theme": "2test1@skypro.ru",
+      "message_body": "956-659",
+      "client":  "1",
+      "time": "2023",
+      "period": "weekly",
+      "status": "created",
+      "owner": "2"
+    }
+  },
+  {
+    "model": "Client.message",
+    "pk": 3,
+    "fields": {
+      "theme": "3test1@skypro.ru",
+      "message_body": "956-659",
+      "client":  "1",
+      "time": "2023",
+      "period": "weekly",
+      "status": "created",
+      "owner": "2"
+
+  }
+  },
+  {
+    "model": "Client.message",
+    "pk": 4,
+    "fields": {
+      "theme": "4test1@skypro.ru",
+      "message_body": "956-659",
+      "client":  "1",
+      "time": "2023",
+      "period": "weekly",
+      "status": "created",
+      "owner": "1"
+  }
+  },
+  {
+    "model": "Client.message",
+    "pk": 5,
+    "fields": {
+      "theme": "5test1@skypro.ru",
+      "message_body": "956-659",
+      "client":  "1",
+      "time": "2023",
+      "period": "weekly",
+      "status": "created",
+      "owner": "2"
+    }
+  },
+  {
+    "model": "Client.message",
+    "pk": 6,
+    "fields": {
+      "theme": "6test1@skypro.ru",
+      "message_body": "956-659",
+      "client":  "1",
+      "time": "2023",
+      "period": "weekly",
+      "status": "created",
+      "owner": "4"
+    }
+  },
+  {
+    "model": "Client.message",
+    "pk": 7,
+    "fields": {
+      "theme": "7test1@skypro.ru",
+      "message_body": "956-659",
+      "client":  "1",
+      "time": "2023",
+      "period": "weekly",
+      "status": "created",
+      "owner": "6"
+    }
+  }
+]

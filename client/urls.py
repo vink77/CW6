@@ -4,7 +4,7 @@ from django.urls import path
 from django.conf import settings
 from client.views import ClientListView, ClientDeleteView, ClientCreateView, ClientDetailView, \
     ClientUpdateView, MessageListView, MessageDetailView, MessageCreateView, MessageUpdateView, MessageDeleteView, \
-    get_messages
+    get_messages, messages_logs
 from client.apps import ClientConfig
 
 
@@ -24,11 +24,12 @@ urlpatterns = [
     path('delete/<int:pk>/', ClientDeleteView.as_view(), name='delete'),
 
 
-    path('messages_menu', get_messages, name='messages_menu'),
-    path('messages', MessageListView.as_view(), name='message_list'),
-    path('message/<int:pk>/', MessageDetailView.as_view(), name='message_item'),
-    path('message/create', MessageCreateView.as_view(), name='message_create'),
+    #path('messages_menu', get_messages, name='messages_menu'),
+    path('message_list',                 MessageListView.as_view(), name='message_list'),
+    path('message/detail/<int:pk>',  MessageDetailView.as_view(), name='message_detail'),
+    path('message_create/',          MessageCreateView.as_view(), name='message_create'),
     path('message/update/<int:pk>/', MessageUpdateView.as_view(), name='message_update'),
     path('message/delete/<int:pk>/', MessageDeleteView.as_view(), name='message_delete'),
+    path('message/logs/<int:mailing_id>', messages_logs, name='messages_logs'),
 
-              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+                  ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
