@@ -4,7 +4,7 @@ from django.urls import path
 from django.conf import settings
 from client.views import ClientListView, ClientDeleteView, ClientCreateView, ClientDetailView, \
     ClientUpdateView, MessageListView, MessageDetailView, MessageCreateView, MessageUpdateView, MessageDeleteView, \
-    get_messages, messages_logs
+    LogDeleteView, LogListView
 from client.apps import ClientConfig
 
 
@@ -30,6 +30,10 @@ urlpatterns = [
     path('message_create/',          MessageCreateView.as_view(), name='message_create'),
     path('message/update/<int:pk>/', MessageUpdateView.as_view(), name='message_update'),
     path('message/delete/<int:pk>/', MessageDeleteView.as_view(), name='message_delete'),
-    path('message/logs/<int:mailing_id>', messages_logs, name='messages_logs'),
+
+    path('log/delete/<int:pk>/', LogDeleteView.as_view(), name='log_delete'),
+    path('log_list',             LogListView.as_view(), name='log_list'),
+
+
 
                   ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

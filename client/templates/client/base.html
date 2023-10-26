@@ -67,7 +67,7 @@
           <p>
             <a  class="btn btn-danger my-4" href="{% url 'client:client_list' %}" >Список клиентов</a>
             <a  class="btn btn-warning my-2" href="{% url 'client:message_list' %}" >Рассылки</a>
-            <a  class="btn btn-success my-2" href="client/create" >Посмотреть отчеты о рассылках</a>
+            <a  class="btn btn-success my-2" href="{% url 'client:log_list' %}" >Посмотреть отчеты о рассылках</a>
 
           </p>
           {% endif %}

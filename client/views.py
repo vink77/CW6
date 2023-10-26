@@ -1,6 +1,7 @@
 from random import random
 
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models.functions import Log
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy, reverse
 from django.views import generic
@@ -139,23 +140,35 @@ class MessageDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Message
     success_url = reverse_lazy('mailing:message_list')
 
-def get_messages(request):
-    """Контроллер меню рассылки"""
-    context = {
-        'title': 'Меню рассылки'
-    }
-    return render(request, 'client/messages_menu.html', context)
+class ClientListView(ListView):
+    model = Logs
+    template_name = 'client/log_list.html'
 
-def messages_logs(request, mailing_id):
-    mailing = get_object_or_404(Message, pk=mailing_id)
-    logs = Logs.objects.filter(log_mailing=mailing).order_by('-created_time')
+    def get_queryset(self):
+        """Фильтр на отображение только отчетов пользователя"""
+        user = self.request.user
 
-    if (mailing.owner == request.user or request.user.is_superuser
-            or request.user.groups.filter(name='manager').exists()):
-        context = {
-            'mailing': mailing,
-            'logs': logs,
-        }
-        return render(request, 'client/messages_logs.html', context)
-    else:
-        return redirect("client:message_list")
+        if  user.is_superuser:
+            queryset = Log.objects.all()
+        else:
+            queryset = Log.objects.filter(client_owner=user)
+        return queryset
+
+
+class LogDeleteView(DeleteView):
+    model = Logs
+    success_url = reverse_lazy('client:log_list')
+
+class LogListView(ListView):
+    model = Logs
+    template_name = 'client/log_list.html'
+
+    def get_queryset(self):
+        """Фильтр на отображение только отчетов пользователя"""
+        user = self.request.user
+
+        if  user.is_superuser:
+            queryset = Log.objects.all()
+        else:
+            queryset = Log.objects.filter(client_owner=user)
+        return queryset
