@@ -2,22 +2,20 @@ import os
 
 from django.core.management.base import BaseCommand
 import json
-from client.models import Client
+from client.models import Client, Message, Logs
 from config import settings
 from users.models import User
 class Command(BaseCommand):
 
     def handle(self, *args, **options):
-#       print('Hi, Sky!')
-
         #Очищаем БД
 
         Client.objects.all().delete()
         User.objects.all().delete()
+        Message.objects.all().delete()
+        Logs.objects.all().delete()
 
 
-
-#
 
         with open('client/data_json/data_users.json', 'r', encoding='UTF-8') as us:
             users_to_fill = json.load(us)
@@ -27,8 +25,8 @@ class Command(BaseCommand):
                     email=item['fields']['email'],
                     phone=item['fields']['phone'],
                     avatar=item['fields']['avatar'],
-                    is_staff=True,
-                    is_superuser=True,
+                    is_staff=item['fields']['is_staff'],
+                    is_superuser=item['fields']['is_superuser'],
                 )
 
 
@@ -36,6 +34,7 @@ class Command(BaseCommand):
             client_to_fill = json.load(cl)
             for item in client_to_fill:
                 owner_user = User.objects.get(pk=item['fields']['owner'])
+                print(owner_user)
                 Client.objects.create(
                     #pk=item['pk'],
                     client_name=item['fields']['client_name'],
@@ -45,12 +44,12 @@ class Command(BaseCommand):
                 )
 
         with open('client/data_json/data_messages.json', 'r', encoding='UTF-8') as cl:
-            client_to_fill = json.load(cl)
-            for item in client_to_fill:
+            message_to_fill = json.load(cl)
+            for item in message_to_fill:
 
                 owner_message = User.objects.get(pk=item['fields']['owner'])
-                client_message = User.objects.get(pk=item['fields']['client'])
-                Client.objects.create(
+                client_message = Client.objects.get(pk=item['fields']['client'])
+                Message.objects.create(
                     #pk=item['pk'],
                     theme=item['fields']['theme'],
                     message_body=item['fields']['message_body'],

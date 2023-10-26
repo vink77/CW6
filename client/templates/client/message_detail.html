@@ -1,42 +1,29 @@
 {% extends 'client/base.html' %}
-
 {% block content %}
+{% load static %}
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+                  <img src="/media/users/{{user.pk}}" alt="нет изображения"  style="max-width: 50%;">
+                    <p class="card-text">{{User.avatar}}</p>
 
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th>Тема рассылки</th>
-        <th>Сообщение</th>
-        <th>Время рассылки</th>
-        <th>Периодичность</th>
-        <th>Статус</th>
-        <th>Подписчики</th>
-        <th>Владелец</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>{{ object.subject }}</td>
-        <td>{{ object.body }}</td>
-        <td>{{ object.send_time }}</td>
-        <td>{{ object.send_frequency }}</td>
-        <td>{{ object.mailing_status }}</td>
-        <td>
-            <ul>
-                {% for client in mailing.mailing_clients.all %}
-                <li>{{ client.email }}</li>
-                {% endfor %}
-            </ul>
-        </td>
-        <td>{{ object.owner }}</td>
-    </tr>
-    </tbody>
-</table>
+                <div class="card-body">
+                    <h5 class="card-title">Клиент: {{object.client_name|title}}</h5>
+                    <h5 class="card-title pricing-card-title">email: {{ object.client_email }}</h5>
 
-<div class="text-center">
-    <a href="{% url 'agent:mailing_logs' object.pk %}" class="btn btn-success">Смотреть отчет</a>
-    <a href="{% url 'agent:mailing_update' object.pk %}" class="btn btn-primary">Изменить</a>
-    <a href="{% url 'agent:mailing_delete' object.pk %}" class="btn btn-danger">Удалить</a>
-</div>
+                    <p class="card-text">{{object.client_comments|truncatechars:100}}</p>
+                    <h5 class="card-title pricing-card-title">Владелец: {{ object.client_owner }}</h5>
 
+                    <div class="btn-group">
+
+                    </div>
+                  <div class="d-flex justify-content-between align-items-center">
+
+                    <div class="btn-group ">
+                      <a href="{% url 'client:client_list' %}"  class="btn btn-sm btn-outline-secondary"  >Назад</a>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 {% endblock %}

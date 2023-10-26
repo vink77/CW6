@@ -2,23 +2,33 @@
 
 {% block content %}
     <h4>Список рассылок</h4>
+    <div class="col-12 mb-5">
+<ul>
+        <a class="btn btn-warning" href="{%  url 'client:message_create' %}">Добавить рассылку</a>
+    </div>
+
+    <div class="row">
+        {% for object in object_list %}
         <div class="col-md-12">
+            <div class="card mb-9 box-shadow">
+                <div class="card-body">
+                    <h5 class="card-title">Владелец {{ object.owner }}</h5>
+                    <p class="card-text">Клиент: {{ object.client }}</p>
+                    <p class="card-text">Тема: {{ object.theme }}</p>
 
-    <ul>
-        {% if user.is_authenticated %}
-            <div class="col-12 mb-5">
-                <a class="btn btn-warning" href="{% url 'client:message_create' %}">Добавить рассылку</a>
+                    <div class="d-flex justify-content-between align-items-lg-start">
+                        <a href="{%  url 'client:message_view' object.pk %}"
+                           class="btn btn-sm btn-outline-primary">Подробнее</a>
+                        <a href="{% url 'client:message_view' object.pk %}"
+                           class="btn btn-sm btn-outline-primary">Редактировать</a>
+                        <a href="{% url 'client:message_delete' object.pk %}" class="btn btn-sm btn-outline-primary">Удалить</a>
+                        <small class="text-muted">{{ object.comment }}</small>
+                    </div>
+                </div>
             </div>
-        {% endif %}
-        {% for mailing in mailings %}
-
-            <li><a href="{% url 'client:message_detail' message.pk %}">{{ mailing.start_time }}
-                - {{ mailing.end_time }}  </a>
-                {% if mailing.owner.email == user.email or 'Managers' in user_group_names %}
-                    <a class="btn btn-outline-primary" href="{% url 'client:message_confirm_delete' message.pk %}">Удалить</a>
-                    <a class="btn btn-outline-primary" href="{% url 'client:message_update' message.pk %}">Редактировать</a>
-                {% endif %}
-            </li>
+        </div>
+ <br>
         {% endfor %}
-    </ul>
+    </div>
+    <ul>
 {% endblock %}

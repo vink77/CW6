@@ -1,32 +1,32 @@
 {% extends 'client/base.html' %}
 
 {% block content %}
- <h4>Список клиентов</h4>
-    <p
-        ></p>
-    <div class="col-md-12">
-
-<a class="btn btn-danger my-4" href="{%  url 'client:create' %}">Добавить клиента</a>
+<h4>Список клиентов</h4>
+    <div class="col-12 mb-5">
+<ul>
+        <a class="btn btn-danger" href="{%  url 'client:create' %}">Добавить клиента</a>
     </div>
 
-<div class="row">
-    {% for object in object_list %}
-    <div class="col-md-12">
-        <div class="card mb-9 box-shadow">
-            <div class="card-body">
-                <h5 class="card-title">  {{ object.client_name }}</h5>
-                <p class="card-text">email: {{ object.client_email }}</p>
-                <p class="card-text">Владелец: {{ object.client_owner }}</p>
-                <div class="d-flex justify-content-between align-items-lg-start">
-                    <a href="{%  url 'client:detail' object.pk %}" class="btn btn-sm btn-outline-primary">Подробнее</a>
-                    <a href="{% url 'client:view' object.pk %}"  class="btn btn-sm btn-outline-primary">Редактировать</a>
-                    <a href="{% url 'client:delete' object.pk %}"  class="btn btn-sm btn-outline-primary">Удалить</a>
-                    <small class="text-muted">{{ object.comment }}</small>
+    <div class="row">
+        {% for object in object_list %}
+        <div class="col-md-12">
+            <div class="card mb-9 box-shadow">
+                <div class="card-body">
+                    <h5 class="card-title"> {{ object.client_name }}</h5>
+                    <p class="card-text">email: {{ object.client_email }}</p>
+                    <p class="card-text">Владелец: {{ object.client_owner }}</p>
+                    <div class="d-flex justify-content-between align-items-lg-start">
+                        <a href="{%  url 'client:detail' object.pk %}"
+                           class="btn btn-sm btn-outline-primary">Подробнее</a>
+                        <a href="{% url 'client:view' object.pk %}"
+                           class="btn btn-sm btn-outline-primary">Редактировать</a>
+                        <a href="{% url 'client:delete' object.pk %}" class="btn btn-sm btn-outline-primary">Удалить</a>
+                        <small class="text-muted">{{ object.comment }}</small>
+                    </div>
                 </div>
             </div>
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-</div>
-
-{% endblock %}
+    <ul>
+        {% endblock %}

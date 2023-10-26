@@ -53,7 +53,7 @@
   }
   },
   {
-    "model": "Client.message",
+    "model": "Message.message",
     "pk": 5,
     "fields": {
       "theme": "5test1@skypro.ru",

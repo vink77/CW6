@@ -55,7 +55,7 @@ class Message(models.Model):
         verbose_name_plural = 'Рассылки'
 
     def __str__(self):
-        return f'{self.client} / {self.settings}'
+        return f'{self.client}'
 
 
 class Logs(models.Model):

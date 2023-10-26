@@ -26,7 +26,7 @@ urlpatterns = [
 
     #path('messages_menu', get_messages, name='messages_menu'),
     path('message_list',                 MessageListView.as_view(), name='message_list'),
-    path('message/detail/<int:pk>',  MessageDetailView.as_view(), name='message_detail'),
+    path('message/detail/<int:pk>',  MessageDetailView.as_view(), name='message_view'),
     path('message_create/',          MessageCreateView.as_view(), name='message_create'),
     path('message/update/<int:pk>/', MessageUpdateView.as_view(), name='message_update'),
     path('message/delete/<int:pk>/', MessageDeleteView.as_view(), name='message_delete'),
