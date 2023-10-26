@@ -11,22 +11,6 @@ import client
 from client.forms import MessageForm, ClientForm
 from client.models import Client, Message, Logs
 
-
-# Create your views here.
-def home(request):
-    """Домашняя страница с выводом списка всех созданных, но не проведенных рассылок"""
-
-    return render(request, 'client/base.html')
-
-#def client_list(request):
-#    """Домашняя страница с выводом списка всех созданных, но не проведенных рассылок"""
-#
-#    return render(request, 'client/client_list.html')
-
-#class ClientListView(ListView):
-#    model = Client
- #   context_object_name = 'client'
-
 class ClientUpdateView(UpdateView):
     model = Client
     form_class = ClientForm
@@ -88,7 +72,7 @@ class MessageListView(LoginRequiredMixin, ListView):
         if user.is_staff or user.is_superuser:
             queryset = Message.objects.all()
         else:
-            queryset = Message.objects.filter(client_owner=user)
+            queryset = Message.objects.filter(owner=user)
 
         #queryset = queryset.filter(is_publication=True)
         return queryset
@@ -148,10 +132,10 @@ class ClientListView(ListView):
         """Фильтр на отображение только отчетов пользователя"""
         user = self.request.user
 
-        if  user.is_superuser:
-            queryset = Log.objects.all()
+        if user.is_superuser:
+            queryset = Logs.objects.all()
         else:
-            queryset = Log.objects.filter(client_owner=user)
+            queryset = Logs.objects.filter(client_owner=user)
         return queryset
 
 
@@ -170,5 +154,5 @@ class LogListView(ListView):
         if  user.is_superuser:
             queryset = Log.objects.all()
         else:
-            queryset = Log.objects.filter(client_owner=user)
+            queryset = Log.objects.filter(owner=user)
         return queryset

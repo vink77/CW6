@@ -32,7 +32,7 @@ urlpatterns = [
     path('message/delete/<int:pk>/', MessageDeleteView.as_view(), name='message_delete'),
 
     path('log/delete/<int:pk>/', LogDeleteView.as_view(), name='log_delete'),
-    path('log_list',             LogListView.as_view(), name='log_list'),
+    path('log_list/',             LogListView.as_view(), name='log_list'),
 
 
 

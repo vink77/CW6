@@ -67,11 +67,12 @@ class Logs(models.Model):
     )
 
     client = models.ForeignKey(Client, on_delete=models.CASCADE, verbose_name='Клиент')
-    settings = models.ForeignKey(Message, on_delete=models.CASCADE, verbose_name='Настройка')
+ #   setting = models.ForeignKey(Message, on_delete=models.CASCADE, verbose_name='Настройка')
 
     status = models.CharField(choices=STATUSES, default=STATUS_OK, verbose_name='Статус')
 
     last_try = models.DateTimeField(auto_now_add=True, verbose_name='Дата последней попытки')
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, **NULLABLE)
 
 
     class Meta:
