@@ -1,6 +1,5 @@
 from django.db import models
 from config import settings
-from users.models import User
 
 NULLABLE = {"null": True, "blank": True}
 
@@ -41,7 +40,7 @@ class Message(models.Model):
     )
     theme = models.CharField(max_length=250, verbose_name='Тема')
     message_body = models.TextField(verbose_name='Тело')
-    client = models.ForeignKey(Client, on_delete=models.CASCADE, verbose_name='Клиент')
+    client = models.ManyToManyField(Client, on_delete=models.CASCADE, verbose_name='Клиент')
     #settings = models.ForeignKey(Mailing, on_delete=models.CASCADE, verbose_name='Настройка')
 
     time = models.TimeField(verbose_name='Время')
