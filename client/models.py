@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.db import models
 from config import settings
 
@@ -40,9 +42,11 @@ class Message(models.Model):
     )
     theme = models.CharField(max_length=250, verbose_name='Тема')
     message_body = models.TextField(verbose_name='Тело')
-    client = models.ManyToManyField(Client, on_delete=models.CASCADE, verbose_name='Клиент')
-    #settings = models.ForeignKey(Mailing, on_delete=models.CASCADE, verbose_name='Настройка')
-
+    client = models.ForeignKey(Client, on_delete=models.CASCADE, verbose_name='Клиент')
+    #settings = models.ForeignKey(Message, on_delete=models.CASCADE, verbose_name='Настройка')
+    now = datetime.now()
+    current_time = now.strftime("%Y-%m-%d")
+    data_create = models.DateField(verbose_name='дата создания', default=current_time)
     time = models.TimeField(verbose_name='Время')
     period = models.CharField(max_length=20, choices=PERIODS, default=PERIOD_DAILY, verbose_name='Период')
     status = models.CharField(max_length=20, choices=STATUSES, default=STATUS_CREATED, verbose_name='Статус')
@@ -69,9 +73,10 @@ class Logs(models.Model):
  #   setting = models.ForeignKey(Message, on_delete=models.CASCADE, verbose_name='Настройка')
 
     status = models.CharField(choices=STATUSES, default=STATUS_OK, verbose_name='Статус')
-
+    response = models.TextField(**NULLABLE, verbose_name='ответ сервера')
     last_try = models.DateTimeField(auto_now_add=True, verbose_name='Дата последней попытки')
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, **NULLABLE)
+    message = models.ForeignKey(Message, on_delete=models.CASCADE, verbose_name='рассылка')
 
 
     class Meta:

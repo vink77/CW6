@@ -34,7 +34,6 @@ class Command(BaseCommand):
             client_to_fill = json.load(cl)
             for item in client_to_fill:
                 owner_user = User.objects.get(pk=item['fields']['owner'])
-                print(owner_user)
                 Client.objects.create(
                     #pk=item['pk'],
                     client_name=item['fields']['client_name'],

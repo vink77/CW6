@@ -58,7 +58,7 @@
     "fields": {
       "theme": "5test1@skypro.ru",
       "message_body": "956-659",
-      "client":  "1",
+      "client":  "2",
       "time": "2023",
       "period": "weekly",
       "status": "created",
@@ -71,7 +71,7 @@
     "fields": {
       "theme": "6test1@skypro.ru",
       "message_body": "956-659",
-      "client":  "1",
+      "client":  "3",
       "time": "2023",
       "period": "weekly",
       "status": "created",

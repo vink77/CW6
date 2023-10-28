@@ -34,12 +34,16 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'apscheduler',
+    'django_apscheduler',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'client',
     'users',
     'blog',
@@ -47,6 +51,8 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     # 'django.middleware.cache.UpdateCacheMiddleware' # кэширование всего сайта
+    #'django_apscheduler.middleware.ApschedulerMiddleware',
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -117,7 +123,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'ru-ru'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Moscow'
 
 USE_I18N = True
 
@@ -137,7 +143,7 @@ STATICFILES_DIRS = (
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-MEDIA_URL = 'media/'
+MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
@@ -165,3 +171,7 @@ if CACHE_ENABLED:
             'LOCATION': os.getenv('LOCATION')
         }
     }
+
+CRONJOBS = [
+    ('*/1 * * * *', 'client.send_message.send_messages')
+]

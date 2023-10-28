@@ -10,6 +10,8 @@ from django.views.generic import ListView, UpdateView, DetailView, CreateView, D
 import client
 from client.forms import MessageForm, ClientForm
 from client.models import Client, Message, Logs
+from users.models import User
+
 
 class ClientUpdateView(UpdateView):
     model = Client
@@ -50,6 +52,8 @@ class ClientDetailView(DetailView):
     template_name = 'client/client_detail.html'
     context_object_name = 'client'
 
+
+
 class ClientDeleteView(DeleteView):
     model = Client
     success_url = reverse_lazy('client:client_list')
@@ -80,6 +84,7 @@ class MessageListView(LoginRequiredMixin, ListView):
 class MessageDetailView(DetailView):
     """Контроллер постраничного вывода информации о рассылках"""
     model = Message
+    template_name = 'client/Message_detail.html'
 
     def get_context_data(self, *args, **kwargs):
         context_data = super().get_context_data(**kwargs)
@@ -106,25 +111,13 @@ class MessageUpdateView(LoginRequiredMixin, generic.UpdateView):
     form_class = MessageForm
     success_url = reverse_lazy('client:message_list')
 
-    def form_valid(self, form):
-        context_data = self.get_context_data()
-        formset = context_data['formset']
-        self.object = form.save()
-        if formset.is_valid():
-            formset.instance = self.object
-            formset.save()
-        return super().form_valid(form)
-
-    def get_success_url(self):
-        return reverse('client:message_detail', args=[self.object.pk])
-
 
 class MessageDeleteView(LoginRequiredMixin, generic.DeleteView):
     """Контроллер удаления рассылки"""
     model = Message
     success_url = reverse_lazy('mailing:message_list')
 
-class ClientListView(ListView):
+class LogListView(ListView):
     model = Logs
     template_name = 'client/log_list.html'
 
@@ -143,16 +136,3 @@ class LogDeleteView(DeleteView):
     model = Logs
     success_url = reverse_lazy('client:log_list')
 
-class LogListView(ListView):
-    model = Logs
-    template_name = 'client/log_list.html'
-
-    def get_queryset(self):
-        """Фильтр на отображение только отчетов пользователя"""
-        user = self.request.user
-
-        if  user.is_superuser:
-            queryset = Log.objects.all()
-        else:
-            queryset = Log.objects.filter(owner=user)
-        return queryset
